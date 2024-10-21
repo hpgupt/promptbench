@@ -11,6 +11,7 @@ from tqdm import tqdm
 
 from promptbench.config import *
 from datasets import load_dataset
+import pandas as pd
 
 
 def shuffleDict(d):
@@ -25,7 +26,7 @@ def shuffleDict(d):
     return dict(keys)
 
 class Dataset(object):
-    def __init__(self, dataset_name):
+    def __init__(self, dataset_name, filepath=None):
         self.data = []
         self.dataset_name = dataset_name
 
@@ -39,12 +40,17 @@ class Dataset(object):
         # check if the dataset exists, if not, download it
         if dataset_name == "gsm8k":
             self.filepath = os.path.join(self.data_dir, f"{dataset_name}.jsonl")
+        elif dataset_name == "wht":
+            self.filepath = filepath
+            print ("Loaded CSV.")
         else:
             self.filepath = os.path.join(self.data_dir, f"{dataset_name}.json")
             
         if not os.path.exists(self.filepath):
             if dataset_name == "gsm8k":
                 url = f'https://wjdcloud.blob.core.windows.net/dataset/promptbench/dataset/{dataset_name}.jsonl'
+            elif dataset_name == "wht":
+                raise Exception("CSV provided at filepath not found.")
             else:
                 url = f'https://wjdcloud.blob.core.windows.net/dataset/promptbench/dataset/{dataset_name}.json'
             print(f"Downloading {dataset_name} dataset...")
@@ -427,6 +433,32 @@ class GSM8K(Dataset):
         answer = output.replace(",", "")
         answer = [s for s in re.findall(r'-?\d+\.?\d*', answer)]
         answer = answer[0] if len(answer) > 0 else ""
+        return answer
+    
+class wht(Dataset):
+    """
+    Custom class for whataboutism Dataset.
+    """
+    def __init__(self, filepath):  
+        super().__init__(dataset_name="wht", filepath=filepath)
+        data = pd.read_csv(self.filepath)
+        self.data = []
+        for _, row in data.iterrows():
+            content = f"Is this comment from topic '{row['Topic']}' an example of whataboutism? Comment: {row['Comments']}."
+            label = str(row['Label'])
+            self.data.append({
+                "content": content,
+                "label": label
+            })
+
+    def extract_answer(self, output):
+        answer = output.replace(",", "")
+        if 'yes' in answer.lower():
+            answer = '1'
+        elif 'no' in answer.lower():
+            answer = '0'
+        else:
+            answer = '0'
         return answer
 
 

@@ -11,7 +11,7 @@ SUPPORTED_DATASETS = [
     "bool_logic", "valid_parentheses",
     "gsm8k", "csqa", "bigbench_date", "bigbench_object_tracking",
     "last_letter_concat", "numersense", "qasc",
-    "bbh", "drop", "arc-easy", "arc-challenge",
+    "bbh", "drop", "arc-easy", "arc-challenge","wht"
 ]
 
 SUPPORTED_DATASETS_VLM = [
@@ -22,7 +22,7 @@ SUPPORTED_DATASETS_VLM = [
 class DatasetLoader:
     
     @staticmethod
-    def load_dataset(dataset_name, task=None, supported_languages=None):
+    def load_dataset(dataset_name, task=None, supported_languages=None, filepath=None):
         """
         Load and return the specified dataset.
 
@@ -92,6 +92,8 @@ class DatasetLoader:
             return ChartQA()
         elif dataset_name == 'science_qa':
             return ScienceQA()
+        elif dataset_name == 'wht':
+            return wht(filepath = filepath)
         else:
             # If the dataset name doesn't match any known datasets, raise an error
             raise NotImplementedError(f"Dataset '{dataset_name}' is not supported.")

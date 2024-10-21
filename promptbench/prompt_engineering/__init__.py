@@ -26,13 +26,13 @@ METHOD_MAP = {
 }
 
 METHOD_SUPPORT_DATASET = {
-    'CoT': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking'],
-    'ZSCoT': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking'],
-    'expert_prompting': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking'],
-    'emotion_prompt': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking'],
-    'least_to_most': ['gsm8k', 'last_letter_concat'],
+    'CoT': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking', 'wht'],
+    'ZSCoT': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking', 'wht'],
+    'expert_prompting': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking', 'wht'],
+    'emotion_prompt': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking', 'wht'],
+    'least_to_most': ['gsm8k', 'last_letter_concat', 'wht'],
     'generated_knowledge': ['csqa', 'numersense', 'qasc'],
-    'baseline': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking', 'last_letter_concat', 'numersense', 'qasc'],
+    'baseline': ['gsm8k', 'csqa', 'bigbench_date', 'bigbench_object_tracking', 'last_letter_concat', 'numersense', 'qasc', 'wht'],
 }
 
 # Model: GPT3.5, GPT4, Llama7b-chat, Llama13b-chat, llama70b-chat

@@ -20,6 +20,8 @@ class Base:
             self.output_range = "numbers expressed in English words, e.g. 'one', 'two', 'three', ..." 
         elif self.dataset_name == "last_letter_concat":
             self.output_range = "English letter combinations, e.g. 'afsa', 'abgsa', ..."
+        elif self.dataset_name == "wht":
+            self.output_range = "either yes or no. yes if the comment is an example of whataboutism, no otherwise."
         else:
             self.output_range = "No format restrictions"
             

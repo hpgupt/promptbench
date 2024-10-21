@@ -8,6 +8,36 @@ This file contains the prompt sets for various methods and a class .
 METHOD_ORIENTED_PROMPTS = {
     'chain_of_thought': {
         'cot_trigger': "Let's think step by step.",
+        'wht': 
+            """
+            Q: Is this comment from topic 'Political Debate' an example of whataboutism? Comment: Politician A has been accused of corruption, but what about Politician B? They did even worse things and got away with it.
+            A: The initial statement involves an accusation or criticism about Politician A’s corrupt actions. Instead of addressing Politician A’s actions directly, the response shifts the focus to Politician B's actions, drawing attention away from the original issue.
+            The response does not deny the accusation but instead implies that wrongdoing is acceptable because others have also done it. This is whataboutism because it distracts from the specific criticism of Politician A by pointing fingers at someone else, thus avoiding accountability for the initial accusation.
+            Thus, the answer is yes
+            
+            Q: Is this comment from topic 'Environmental Issue' an example of whataboutism? Comment: Why should we reduce plastic waste in our country when other countries are polluting the oceans even more?
+            A: There’s a suggestion to reduce plastic waste as an environmental responsibility. The response shifts the focus from what "we" should do to what "other countries" are doing, diverting attention from taking action.
+            The response doesn’t address whether reducing plastic waste is good but instead implies inaction is justifiable because others are contributing more pollution.
+            This is whataboutism because it deflects the responsibility of taking action by pointing to someone else’s behavior, thus avoiding accountability.
+            Thus, the answer is yes
+            
+            Q: Is this comment from topic 'Personal Accountability' an example of whataboutism? Comment: You shouldn't be so hard on me for missing deadlines; even the boss misses them all the time.
+            A: The statement addresses a failure to meet deadlines and implies the need for accountability. The response deflects from the person’s own behavior by shifting the attention to the boss’s actions.
+            The response doesn’t deny the issue of missed deadlines but instead excuses it based on the actions of someone else in a higher position.
+            This is whataboutism because it avoids addressing the person’s own accountability by pointing out another individual’s similar behavior.
+            Thus, the answer is yes
+            
+            Q: Is this comment from topic 'Contextual Information in a Discussion' an example of whataboutism? Comment: I agree that renewable energy is essential, but it's important to remember that our current infrastructure also heavily relies on fossil fuels.
+            A: The statement acknowledges the importance of renewable energy. Instead of deflecting from the issue, it provides relevant information about infrastructure, which is pertinent to the discussion.
+            The statement aims to add context rather than divert responsibility or avoid the issue. This is not whataboutism because it doesn’t deflect from the main issue but instead adds constructive context to the conversation.
+            Thus, the answer is no
+            
+            Q: Is this comment from topic 'Request for Clarification in a Discussion' an example of whataboutism? Comment: Yes, we should discuss climate change solutions, but can we also look at economic impacts to make informed decisions?
+            A: The statement agrees with the importance of discussing climate change solutions. It introduces a related aspect (economic impacts) to help with a more comprehensive understanding.
+            The response does not deflect from the issue or make excuses but aims to expand the discussion to ensure well-rounded decision-making.
+            This is not whataboutism because it does not distract from or avoid the original issue; rather, it seeks a balanced approach by adding a relevant dimension to the discussion.
+            Thus, the answer is no
+            """,
         'gsm8k':
             """
             Q: There are 15 trees in the grove. Grove workers will plant trees in the grove today. After they are done, there
@@ -122,6 +152,18 @@ METHOD_ORIENTED_PROMPTS = {
         [Instruction]: Identify the parts of speech in this sentence: \"The dog barked at the postman\".
         [Agent Description]: You are a linguist, well-versed in the study of language and its structures. You have a keen eye for identifying the parts of speech in a sentence and can easily recognize the function of each word in the sentence. You are equipped with a good understanding of grammar rules and can differentiate between nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions. You can quickly and accurately identify the parts of speech in the sentence "The dog barked at the postman" and explain the role of each word in the sentence. Your expertise in language and grammar is highly valuable in analyzing and understanding the nuances of communication.
         """,
+    'expert_prompt':
+        """ For each instruction, write a high-quality description about the most capable and suitable agent to answer the instruction. In second person perspective.
+
+        [Instruction]: Make a list of 5 possible effects of deforestation.
+        [Agent Description]: You are an environmental scientist with a specialization in the study of ecosystems and their interactions with human activities. You have extensive knowledge about the effects of deforestation on the environment, including the impact on biodiversity, climate change, soil quality, water resources, and human health. Your work has been widely recognized and has contributed to the development of policies and regulations aimed at promoting sustainable forest management practices. You are equipped with the latest research findings, and you can provide a detailed and comprehensive list of the possible effects of deforestation, including but not limited to the loss of habitat for countless species, increased greenhouse gas emissions, reduced water quality and quantity, soil erosion, and the emergence of diseases. Your expertise and insights are highly valuable in understanding the complex interactions between human actions and the environment.
+
+        [Instruction]: Identify a descriptive phrase for an eclipse.
+        [Agent Description]: You are an astronomer with a deep understanding of celestial events and phenomena. Your vast knowledge and experience make you an expert in describing the unique and captivating features of an eclipse. You have witnessed and studied many eclipses throughout your career, and you have a keen eye for detail and nuance. Your descriptive phrase for an eclipse would be vivid, poetic, and scientifically accurate. You can capture the awe-inspiring beauty of the celestial event while also explaining the science behind it. You can draw on your deep knowledge of astronomy, including the movement of the sun, moon, and earth, to create a phrase that accurately and elegantly captures the essence of an eclipse. Your descriptive phrase will help others appreciate the wonder of this natural phenomenon.
+
+        [Instruction]: Identify the parts of speech in this sentence: \"The dog barked at the postman\".
+        [Agent Description]: You are a linguist, well-versed in the study of language and its structures. You have a keen eye for identifying the parts of speech in a sentence and can easily recognize the function of each word in the sentence. You are equipped with a good understanding of grammar rules and can differentiate between nouns, verbs, adjectives, adverbs, pronouns, prepositions, and conjunctions. You can quickly and accurately identify the parts of speech in the sentence "The dog barked at the postman" and explain the role of each word in the sentence. Your expertise in language and grammar is highly valuable in analyzing and understanding the nuances of communication.
+        """,
     'least_to_most': {
         'gsm8k': 
             """ 
@@ -162,6 +204,33 @@ METHOD_ORIENTED_PROMPTS = {
             Q: “transformer, language, vision”
             A: “transformer, language” outputs “re”. The last letter of “vision” is “n”. Concatenating: “re”, “n” leads to “ren”. So, “transformer, language, vision” outputs “ren”.
             """,
+        'wht':
+            """
+            Is this comment from the topic 'Political Debate' an example of whataboutism? Comment: Politician A has been accused of corruption, but what about Politician B? They did even worse things and got away with it.
+            Q: Does the comment respond to the original criticism by addressing Politician A’s actions directly?
+            A: No, the comment shifts focus to Politician B.
+            Q: Does the comment divert attention from Politician A’s wrongdoing by pointing out Politician B’s actions?
+            A: Yes, it brings up a separate issue related to Politician B.
+            Q: Is the diversion of attention away from the original accusation a sign of avoiding accountability?
+            A: Yes, the comment deflects instead of addressing the accusation directly. Thus, the answer is yes.
+            
+             Is this comment about 'Environmental Issue' an example of whataboutism? Comment: Why should we reduce plastic waste in our country when other countries are polluting the oceans even more?
+             Q: Does the comment address the importance or relevance of reducing plastic waste directly?
+             A: No, it shifts focus to what other countries are doing.
+             Q: Does the comment deflect responsibility by comparing our actions to those of other countries?
+             A: Yes, it implies that we shouldn't act because others are polluting more.
+             Q: Is this an attempt to avoid taking action or accountability by shifting the discussion to someone else’s behavior?
+             A: Yes, the comment avoids addressing our responsibility. Thus, the answer is yes.
+             
+             Is this comment about 'Contextual Information in a Discussion' an example of whataboutism? Comment: I agree that renewable energy is essential, but it's important to remember that our current infrastructure also heavily relies on fossil fuels.
+             Q: Does the comment acknowledge the importance of renewable energy?
+             A: Yes, it explicitly agrees that renewable energy is essential.
+             Q: Does the comment try to divert the discussion away from renewable energy, or does it provide additional context about current infrastructure?
+             A: It provides relevant context about fossil fuels and infrastructure.
+             Q: Does this additional information help in understanding the broader issue, or is it used to avoid addressing renewable energy?
+             A: It adds context without avoiding the original point about renewable energy. Thus, the answer is no.
+             
+            """
     },
     'generated_knowledge': {
         'numersense': 
